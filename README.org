@@ -2,6 +2,8 @@
 
 Fancy pretty-printing utilities for [[https://cons.io/][Gerbil Scheme]].
 
+[[./demo.png]]
+
 ** Features
 
 - [[https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences][ANSI control codes]] for styling and cursor movement
