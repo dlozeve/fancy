@@ -1,0 +1,8 @@
+* Fancy
+
+Fancy pretty-printing utilities for [[https://cons.io/][Gerbil Scheme]].
+
+** References
+
+- [[https://notes.burke.libbey.me/ansi-escape-codes/][Everything you never wanted to know about ANSI escape codes]]
+- [[https://github.com/willmcgugan/rich][Rich]] for Python, especially for their [[https://rich.readthedocs.io/en/latest/markup.html][console markup]] language
