@@ -4,5 +4,6 @@
 
 (defbuild-script
   '("fancy/format"
-    "fancy/table")
+    "fancy/table"
+    "fancy/rule")
   optimize: #t)
