@@ -7,6 +7,7 @@ Fancy pretty-printing utilities for [[https://cons.io/][Gerbil Scheme]].
 - [[https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences][ANSI control codes]] for styling and cursor movement
 - Table formatting with [[https://unicode-table.com/en/blocks/box-drawing/][Unicode box drawing characters]]
 - Horizontal rules
+- Spinners
 
 ** References
 

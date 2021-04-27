@@ -14,8 +14,7 @@
 	set-graphics-mode
 	set-color
 	parse-markup
-	remove-markup
-	spinner)
+	remove-markup)
 
 (import :std/format
 	:std/pregexp
@@ -93,14 +92,3 @@
 
 (def (remove-markup text)
   (pregexp-replace* +re-tags+ text ""))
-
-(def (spinner i style: (style 'ascii))
-  (str (cursor-back 2)
-       (match style
-	 ('block (string-ref "▖▘▝▗" (modulo i 4)))
-	 ('triangle (string-ref "◢◣◤◥" (modulo i 4)))
-	 ('circle (string-ref "◐◓◑◒" (modulo i 4)))
-	 ('vertical (string-ref "▁▃▄▅▆▇█▇▆▅▄▃" (modulo i 12)))
-	 ('horizontal (string-ref "▉▊▋▌▍▎▏▎▍▌▋▊▉" (modulo i 12)))
-	 ('ascii (string-ref "|/-\\" (modulo i 4))))
-       " "))
