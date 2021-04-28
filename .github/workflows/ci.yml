@@ -1,0 +1,62 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install libssl-dev zlib1g-dev libsqlite3-dev
+    - name: Checkout Gambit
+      uses: actions/checkout@v2
+      with:
+        repository: gambit/gambit
+        ref: v4.9.3
+        path: gambit
+    - name: Install Gambit
+      run: |
+        cd gambit
+        ./configure --prefix=/usr/local/gambit \
+            --enable-single-host \
+            --enable-multiple-versions \
+            --enable-openssl \
+            --enable-default-runtime-options=f8,-8,t8 \
+            --enable-poll
+        make -j
+        make check
+        sudo make install
+        echo "/usr/local/gambit/current/bin" >> $GITHUB_PATH
+    - name: Checkout Gerbil
+      uses: actions/checkout@v2
+      with:
+        repository: vyzo/gerbil
+        path: gerbil
+    - name: Install Gerbil
+      env:
+        LD_LIBRARY_PATH: /usr/local/gambit/current/lib
+      run: |
+        cd gerbil/src
+        ./configure --prefix=/usr/local/gerbil
+        GERBIL_BUILD_CORES=2 ./build.sh
+        sudo env "PATH=$PATH" ./install
+        echo "GERBIL_HOME=/usr/local/gerbil" >> $GITHUB_ENV
+        echo "/usr/local/gerbil/bin" >> $GITHUB_PATH
+    - name: Checkout project
+      uses: actions/checkout@v2
+      with:
+        path: repo
+    - name: Build
+      env:
+        LD_LIBRARY_PATH: /usr/local/gambit/current/lib
+      run: |
+        cd repo
+        ./build.ss
+    - name: Run demo
+      env:
+        LD_LIBRARY_PATH: /usr/local/gambit/current/lib
+      run: |
+        cd repo
+        ./demo.ss
