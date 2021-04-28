@@ -16,10 +16,10 @@
   (displayln (parse-markup
 	      "[bold red]Lorem ipsum[/bold red] dolor sit amet, [underline]consectetur[/underline] adipiscing elit, sed do
 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-minim veniam, [cyan]quis nostrud exercitation [bold]ullamco[/bold] laboris[/cyan] nisi ut
+minim veniam, [cyan]quis nostrud exercitation [yellow]ullamco[/yellow] laboris[/cyan] nisi ut
 aliquip ex ea commodo consequat. Duis aute irure dolor in
 reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-pariatur. [yellow]Excepteur sint [underline]occaecat[/yellow underline] cupidatat non proident, sunt in
+pariatur. [black on yellow]Excepteur sint [on red]occaecat[/on red] cupidatat non proident, sunt in
 culpa qui officia deserunt mollit anim id est laborum."))
   (displayln)
 

@@ -31,6 +31,15 @@
     (magenta . 5)
     (cyan . 6)
     (white . 7)))
+(def +basic-bg-colors+
+  '((on-black . 0)
+    (on-red . 1)
+    (on-green . 2)
+    (on-yellow . 3)
+    (on-blue . 4)
+    (on-magenta . 5)
+    (on-cyan . 6)
+    (on-white . 7)))
 
 (def (cursor-up (n 1)) (format "~a~dA" +CSI+ n))
 (def (cursor-down (n 1)) (format "~a~dB" +CSI+ n))
@@ -59,7 +68,7 @@
 		     (when italic "3")
 		     (when underline "4")
 		     (when color (format "3~d" (assgetq color +basic-colors+)))
-		     (when background (format "4~d" (assgetq background +basic-colors+)))]))
+		     (when background (format "4~d" (assgetq background +basic-bg-colors+)))]))
   (format "~a~am" +CSI+ (string-join args #\;)))
 
 (def (set-color (col #f))
@@ -69,7 +78,8 @@
 
 (def (parse-tag contents (style []))
   (def closing (eq? #\/ (string-ref contents 0)))
-  (def tags (map string->symbol (string-split (string-trim-prefix "/" contents) #\ )))
+  (def clean-contents (string-subst (string-trim-prefix "/" contents) "on " "on-"))
+  (def tags (map string->symbol (string-split clean-contents #\ )))
   (def new-style (if closing
 		   (lset-difference eq? style tags)
 		   (lset-union eq? style tags)))
@@ -79,9 +89,14 @@
 		    (member 'italic new-style)
 		    (member 'underline new-style)
 		    (let ((colors (lset-intersection eq?
-						     (map car +basic-colors+)
-						     new-style)))
-		      (if (null? colors) #f (car colors)))))
+						     new-style
+						     (map car +basic-colors+))))
+		      (if (null? colors) #f (car colors)))
+		    (let ((bg-colors (lset-intersection
+				      eq?
+				      new-style
+				      (map car +basic-bg-colors+))))
+		      (if (null? bg-colors) #f (car bg-colors)))))
   (values control-seq new-style))
 
 (def (parse-markup text (style []))
