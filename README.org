@@ -2,6 +2,7 @@
 
 Fancy pretty-printing utilities for [[https://cons.io/][Gerbil Scheme]].
 
+#+ATTR_HTML: :width 100% :style margin-left: auto; margin-right: auto;
 [[./demo.png]]
 
 ** Features
