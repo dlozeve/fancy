@@ -6,5 +6,4 @@
   '("fancy/format"
     "fancy/table"
     "fancy/rule"
-    "fancy/spinner")
-  optimize: #t)
+    "fancy/spinner"))
