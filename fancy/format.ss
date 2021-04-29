@@ -81,7 +81,7 @@
     ((? (lambda (t) (assgetq t +basic-bg-colors+)) => code) (format "4~d" code))
     (else #!void)))
 
-(def (graphics-style style)
+(def (graphics-style (style []))
   (def colors (lset-intersection eq? style (map car +basic-colors+)))
   (def bg-colors (lset-intersection eq? style (map car +basic-bg-colors+)))
   (def style-without-colors (lset-difference eq? style
