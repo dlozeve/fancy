@@ -6,5 +6,6 @@
   '("fancy/format"
     "fancy/table"
     "fancy/rule"
+    "fancy/progress"
     "fancy/spinner")
   optimize: #t debug: 'src)

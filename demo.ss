@@ -8,6 +8,7 @@
 	:dlozeve/fancy/format
 	:dlozeve/fancy/table
 	:dlozeve/fancy/rule
+	:dlozeve/fancy/progress
 	:dlozeve/fancy/spinner)
 
 (def (main)
@@ -29,6 +30,11 @@ culpa qui officia deserunt mollit anim id est laborum."))
   (display (table-row tab "21" "[red]Toto" "Blublu"))
   (display (table-footer tab))
   (displayln)
+  (displayln)
+  (def pbar (progress-bar 100 "[green]Progress: " percent: #f style: 'line))
+  (for ((i (in-range 100)))
+    (display (progress pbar (1+ i)))
+    (thread-sleep! 0.05))
   (displayln)
   (for ((i (in-range 20)))
     (display (spinner i "[yellow]Waiting:" (format "(computing ~d/20)" (1+ i))
