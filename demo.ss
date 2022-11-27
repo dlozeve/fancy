@@ -12,7 +12,7 @@
 	:dlozeve/fancy/spinner)
 
 (def (main)
-  (display (rule "[bold green]Fancy demo" style: 'simple))
+  (display (rule "[bold green]Fancy demo" style: 'simple width: 100))
   (displayln)
   (displayln (parse-markup
 	      "[bold red]Lorem ipsum[/bold red] dolor sit amet, [underline]consectetur[/underline] adipiscing elit, sed do
